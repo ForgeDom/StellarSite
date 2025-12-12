@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+$font-main: 'Inter', sans-serif;
+$color-black: #111;
+$color-gray: #888;
+$color-red: #e30613;
+
+// --- ОСНОВНИЙ КОНТЕЙНЕР ---
+.detailsPage {
+  font-family: $font-main;
+  width: 100%;
+  
+  // Висота рівно на екран
+  height: 100vh; 
+  
+  display: flex;
+  background: #fff;
+  
+  // ВАЖЛИВО: Відступ зверху, щоб не перекривав хедер
+  padding-top: 100px; 
+  box-sizing: border-box; 
+  overflow: hidden; 
+
+  // Для мобільних, де контент може бути довшим за екран
+  @media (max-width: 900px) {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    flex-direction: column; // Картинка зверху, текст знизу
+  }
+}
+
+// --- ЛІВА ЧАСТИНА (КАРТИНКА) ---
+.leftSide {
+  width: 50%;
+  height: 100%; 
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  
+  // Градієнт знизу для читабельності тексту на картинці
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0; height: 40%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  }
+
+  @media (max-width: 900px) {
+    width: 100%;
+    height: 50vh; // На мобільному картинка займає пів екрану
+  }
+}
+
+.videoBtn {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 2;
+
+  .playIcon {
+    width: 44px;
+    height: 44px;
+    background: $color-red;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+    padding-left: 3px; // Візуальна корекція трикутника
+  }
+
+  &:hover .playIcon {
+    transform: scale(1.1);
+  }
+}
+
+// --- ПРАВА ЧАСТИНА (ТЕКСТ) ---
+.rightSide {
+  width: 50%;
+  height: 100%;
+  
+  // ВАЖЛИВО: flex-start, щоб текст починався зверху, а не по центру (уникаємо налізання)
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  
+  padding: 40px 80px 40px 100px; 
+  position: relative;
+  overflow-y: auto; // Скрол тільки для тексту
+
+  @media (max-width: 1200px) { padding: 40px 50px; }
+  @media (max-width: 900px) { 
+    width: 100%; 
+    height: auto; 
+    padding: 40px 24px;
+    overflow: visible;
+  }
+}
+
+.closeBtn {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  width: 40px;
+  height: 40px;
+  background: #000;
+  color: white;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+  z-index: 10;
+
+  &:hover { transform: rotate(90deg); }
+
+  @media (max-width: 900px) {
+    top: -30px; // Піднімаємо кнопку на мобільному, щоб вона була на картинці
+    right: 20px;
+    background: rgba(0,0,0,0.6); // Напівпрозора
+  }
+}
+
+.contentContainer {
+  max-width: 550px;
+  margin-top: 20px; // Додатковий відступ від верху блоку
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: $color-black;
+  line-height: 1.1;
+  margin-bottom: 40px;
+
+  @media (max-width: 1280px) { font-size: 3rem; }
+  @media (max-width: 480px) { font-size: 2.5rem; }
+}
+
+.subInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  align-items: flex-start;
+}
+
+.locationBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .subLabel {
+    font-size: 1rem;
+    color: $color-gray;
+  }
+  .location {
+    font-size: 1.1rem;
+    color: #ccc;
+    font-weight: 300;
+  }
+}
+
+.weatherBlock {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #ccc;
+  .temp { font-weight: 600; color: $color-gray; }
+}
+
+// --- BOOKING SECTION ---
+.bookingSection {
+  margin-bottom: 40px;
+}
+
+.priceLabel {
+  font-size: 0.9rem;
+  color: $color-gray;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.bookBtn {
+  padding: 14px 45px;
+  background: transparent;
+  border: 1px solid $color-red;
+  color: $color-black;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  min-width: 160px;
+
+  &:hover {
+    background: $color-red;
+    color: white;
+  }
+  
+  &:disabled {
+    border-color: #ccc;
+    color: #ccc;
+    cursor: not-allowed;
+    &:hover { background: transparent; }
+  }
+}
+
+.description {
+  p {
+    font-size: 1rem;
+    color: #999;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+}

@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+.profileWrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  padding-top: 120px; 
+  font-family: 'Inter', sans-serif;
+  padding-bottom: 60px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  gap: 40px;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+}
+
+// --- SIDEBAR ---
+.sidebar {
+  flex: 0 0 300px;
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  height: fit-content;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  text-align: center;
+  position: sticky;
+  top: 120px;
+
+  @media (max-width: 900px) {
+    width: 100%;
+    position: relative;
+    top: 0;
+  }
+}
+
+/* === АВАТАРКА І КНОПКА ЗМІНИ === */
+.avatarWrapper {
+    position: relative;
+    width: 100px; 
+    height: 100px;
+    margin: 0 auto 20px;
+}
+
+.avatarCircle {
+  width: 100%; height: 100%;
+  background: #e30613;
+  color: white;
+  font-size: 40px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 5px 15px rgba(227, 6, 19, 0.3);
+  overflow: hidden; // Щоб картинка не вилазила
+}
+
+.avatarImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Кнопка редагування (камера) */
+.editAvatarBtn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+
+    &:hover {
+        transform: scale(1.1);
+        background: #f0f0f0;
+    }
+}
+
+.userInfo {
+  h2 { margin: 0 0 5px; font-size: 1.5rem; color: #111; }
+  p { margin: 0 0 30px; color: #888; font-size: 0.9rem; }
+}
+
+.logoutBtn {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #555;
+  transition: 0.2s;
+  &:hover { background: #f0f0f0; color: #111; border-color: #ccc; }
+}
+
+// --- MAIN CONTENT (Без змін) ---
+.mainContent { flex: 1; }
+.pageTitle { font-size: 2rem; margin-bottom: 30px; color: #111; font-weight: 700; }
+.bookingsGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
+.bookingCard {
+  background: white; border-radius: 16px; padding: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #eee; transition: transform 0.2s, box-shadow 0.2s;
+  &:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+}
+.cardHeader { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; border-bottom: 1px solid #f0f0f0; padding-bottom: 15px; }
+.label { font-size: 0.75rem; color: #999; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 4px; }
+.destination h3 { margin: 0; font-size: 1.4rem; color: #111; }
+.dateBadge { background: #fff0f0; color: #e30613; padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
+.flightDetails { display: flex; flex-direction: column; gap: 15px; }
+.detailRow {
+  display: flex; align-items: center; gap: 15px;
+  .icon { font-size: 1.2rem; width: 30px; text-align: center; opacity: 0.7; }
+  .subLabel { display: block; font-size: 0.75rem; color: #aaa; margin-bottom: 2px; }
+  p { margin: 0; font-weight: 600; font-size: 0.95rem; color: #333; }
+}
+.statusBadge { margin-top: 25px; text-align: center; font-size: 0.8rem; color: #27ae60; background: rgba(39, 174, 96, 0.1); padding: 8px; border-radius: 6px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.emptyState {
+  text-align: center; padding: 80px; background: white; border-radius: 16px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  h3 { font-size: 1.5rem; margin-bottom: 10px; } p { color: #888; margin-bottom: 30px; }
+  button { padding: 14px 35px; background: #e30613; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: 0.2s; &:hover { background: darken(#e30613, 10%); } }
+}
+.loading { display: flex; justify-content: center; align-items: center; height: 100vh; font-size: 1.2rem; color: #888; }

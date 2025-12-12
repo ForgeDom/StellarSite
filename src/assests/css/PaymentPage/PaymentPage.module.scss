@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+$font-main: 'Inter', sans-serif;
+$color-red: #d60000;
+$color-black: #1a1a1a;
+$color-gray: #888;
+
+// --- Keyframes (Анімації) ---
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.pageWrapper {
+    font-family: $font-main;
+    background-color: #f5f5f5; // Сірий фон сторінки
+    min-height: 100vh;
+    padding-top: 100px; // Відступ для хедера
+    padding-bottom: 40px; // Відступ знизу для мобільних
+}
+
+.header {
+    padding: 0 10vw;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    // Анімація заголовка (з'являється першим)
+    animation: fadeIn 0.8s ease-out;
+
+    .backBtn {
+        width: 40px; height: 40px;
+        border-radius: 50%;
+        background: $color-red;
+        color: white;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: transform 0.2s;
+
+        &:hover { transform: scale(1.1); }
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 600;
+    }
+}
+
+// ОСНОВНИЙ КОНТЕЙНЕР (Карточка)
+.contentContainer {
+    width: 80%;
+    margin: 0 auto 60px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+
+    // Анімація появи картки (випливає знизу з затримкою)
+    opacity: 0; 
+    animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: 0.1s;
+
+    // Адаптація для планшетів і менше
+    @media (max-width: 1024px) {
+        flex-direction: column;
+        width: 90%;
+    }
+}
+
+// --- ЛІВА ЧАСТИНА (ФОРМА) ---
+.formSection {
+    flex: 1.5;
+    padding: 60px;
+
+    h2 { margin-bottom: 40px; font-weight: 600; }
+
+    @media (max-width: 768px) {
+        padding: 30px 20px; // Менші відступи на мобільному
+    }
+}
+
+.methodsRow {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 50px;
+
+    @media (max-width: 480px) {
+        flex-wrap: wrap; // На дуже малих екранах іконки переносяться
+        gap: 10px;
+    }
+}
+
+.methodCard {
+    flex: 1;
+    height: 60px;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 60px; // Щоб не сплющувались
+
+    &:hover { border-color: #ccc; }
+    
+    &.active {
+        border-bottom: 3px solid $color-red;
+    }
+}
+
+.inputGroup {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+
+    // На мобільному поля стають одне під одним
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+.field {
+    flex: 1;
+    display: flex; flex-direction: column; gap: 10px;
+
+    label { font-size: 0.85rem; color: $color-gray; }
+    
+    input {
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+        outline: none;
+        width: 100%; // Гарантує ширину
+        &:focus { border-color: $color-black; }
+    }
+}
+
+.cardInput, .dateInput {
+    display: flex; align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0 12px;
+    background: white;
+    
+    span { color: #aaa; margin-right: 10px; flex-shrink: 0; }
+    input { border: none; padding: 12px 0; width: 100%; outline: none; }
+}
+
+.terms {
+    display: flex; align-items: center; gap: 10px; margin-top: 40px;
+    label { font-size: 0.9rem; color: $color-gray; cursor: pointer;}
+    input { cursor: pointer; accent-color: $color-red; width: 16px; height: 16px; }
+}
+
+// --- ПРАВА ЧАСТИНА (SUMMARY) ---
+.summarySection {
+    flex: 1;
+    background: $color-black;
+    color: white;
+    padding: 60px;
+    display: flex; flex-direction: column;
+
+    h2 { margin-bottom: 60px; font-weight: 500; }
+
+    @media (max-width: 768px) {
+        padding: 40px 20px;
+        h2 { margin-bottom: 30px; }
+    }
+}
+
+.summaryRow {
+    display: flex; justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.divider {
+    height: 1px; background: rgba(255,255,255,0.1);
+    margin: 20px 0;
+}
+
+.totalRow {
+    margin-top: auto; // Притискаємо до низу
+    margin-bottom: 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    
+    .totalPrice {
+        font-size: 2.5rem;
+        font-weight: 700;
+        
+        @media (max-width: 768px) { font-size: 2rem; }
+    }
+}
+
+.checkoutBtn {
+    width: 100%;
+    padding: 18px;
+    background: $color-red;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    border-radius: 4px;
+
+    &:hover { 
+        background: darken($color-red, 10%); 
+        transform: translateY(-2px);
+    }
+    &:disabled { background: #555; cursor: not-allowed; transform: none; }
+}
+
+// --- Загальна адаптація (для дуже малих екранів) ---
+@media (max-width: 480px) {
+    .header {
+        padding: 0 5vw;
+        h1 { font-size: 1.8rem; }
+    }
+    .contentContainer { width: 100%; border-radius: 0; box-shadow: none; }
+}

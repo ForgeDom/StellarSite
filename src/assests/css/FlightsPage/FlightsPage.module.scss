@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+$font-main: 'Inter', sans-serif;
+$color-red: #d60000;
+$color-black: #1a1a1a;
+$color-gray: #888;
+
+// --- Анімації ---
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInOverlay {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+// --- Головний контейнер сторінки ---
+.pageWrapper {
+    width: 100%;
+    min-height: 100vh;
+    padding: 120px 40px 60px; // Відступ під хедер
+    color: white;
+    font-family: $font-main;
+}
+
+// --- Заголовок ---
+.title {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #000;
+    animation: slideUp 0.8s ease-out;
+}
+
+// --- Біла картка (Таблиця) ---
+.card {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    color: black;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    opacity: 0;
+    animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: 0.1s;
+}
+
+/* ========================================= */
+/* === FLOATING BUTTON (ЗГОРНУТИЙ СПИСОК) === */
+/* ========================================= */
+.floatingBookingsBtn {
+    position: fixed;
+    top: 120px;
+    right: 40px;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: $color-red;
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 15px rgba(214, 0, 0, 0.4);
+    z-index: 100;
+    transition: transform 0.2s;
+  
+    &:hover { transform: scale(1.1); }
+  
+    .btnIcon { font-size: 24px; }
+    
+    .btnCount {
+      position: absolute;
+      top: -5px; right: -5px;
+      background: #fff;
+      color: $color-red;
+      font-weight: 700;
+      font-size: 12px;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid $color-red;
+    }
+
+    // Адаптація кнопки на мобільному
+    @media (max-width: 768px) {
+        top: auto; bottom: 20px; right: 20px; // Зміщуємо вниз
+    }
+}
+
+/* ========================================= */
+/* === MY BOOKINGS OVERLAY (РОЗГОРНУТИЙ) === */
+/* ========================================= */
+.myBookingsOverlay {
+    position: fixed; // Фіксуємо, щоб перекривати контент
+    top: 120px;       
+    right: 40px;      
+    width: 340px;
+    max-height: 70vh; 
+    overflow-y: auto;
+    
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    border: 1px solid #eee;
+    z-index: 101; // Вище за кнопку
+    
+    animation: fadeInOverlay 0.3s ease-out;
+  
+    &::-webkit-scrollbar { width: 0; }
+
+    @media (max-width: 768px) {
+        top: 80px; right: 10px; width: 95%; // На весь екран на мобільному
+    }
+}
+
+/* Хедер оверлею (Заголовок + Хрестик) */
+.overlayHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+  
+.bookingsTitle {
+    color: #111;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.closeOverlayBtn {
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.2s;
+    
+    &:hover { color: #111; }
+}
+  
+.bookingList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+  
+.bookingCard {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex; align-items: center; gap: 12px;
+    transition: transform 0.2s;
+    border: 1px solid #eee;
+  
+    &:hover {
+      background: #f0f0f0;
+      transform: translateX(-5px);
+    }
+}
+  
+.ticketIcon { font-size: 1.5rem; }
+  
+.ticketInfo {
+    flex: 1; display: flex; flex-direction: column;
+    
+    .ticketDest { color: #111; font-weight: 700; font-size: 0.95rem; }
+    
+    .ticketRoute {
+      color: #888; font-size: 0.75rem; margin-top: 2px;
+    }
+    
+    .ticketDate {
+      color: $color-red; font-size: 0.75rem; margin-top: 4px; font-weight: 600;
+    }
+}
+  
+.ticketPrice {
+    color: #111; font-weight: 700; font-size: 1rem;
+}
+
+/* ========================================= */
+/* === TABLE STYLES (HEADER & ROWS) === */
+/* ========================================= */
+
+.headerRow {
+    display: grid;
+    grid-template-columns: 1.4fr 0.7fr 1.5fr 1fr 1fr 1fr 1.2fr;
+    padding: 0 25px;
+    height: 60px;
+    align-items: center;
+    font-size: 13px;
+    color: #888;
+    border-bottom: 1px solid #e5e5e5;
+    background: #fafafa;
+
+    p { margin: 0; }
+
+    @media (max-width: 768px) { display: none; }
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1.4fr 0.7fr 1.5fr 1fr 1fr 1fr 1.2fr;
+    align-items: center;
+    padding: 30px 25px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.2s;
+
+    &:hover { background: #fdfdfd; }
+
+    @media (max-width: 1024px) {
+        grid-template-columns: 1.5fr 1fr 1.5fr 1fr 1fr 1.2fr;
+        > div:nth-child(6) { display: none; } 
+    }
+
+    @media (max-width: 768px) {
+        display: flex; flex-direction: column; align-items: flex-start;
+        gap: 20px; padding: 20px; border-bottom: 5px solid #f5f5f5;
+    }
+}
+
+.airline {
+    display: flex; align-items: center; gap: 15px;
+    img { width: 30px; object-fit: contain; }
+    span { font-weight: 600; font-size: 0.95rem; }
+}
+
+.time { font-size: 16px; font-weight: 700; }
+
+.stopsBlock {
+    display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%;
+}
+
+.stopsRow {
+    width: 100%; display: flex; justify-content: center; align-items: center; gap: 12px;
+}
+
+.dotsRow {
+    display: flex; gap: 6px;
+    span { width: 6px; height: 6px; background: #e0e0e0; border-radius: 50%; }
+}
+
+.stopsPill {
+    background: #000; padding: 4px 12px; border-radius: 20px;
+    color: white; font-size: 10px; font-weight: 600; text-transform: uppercase;
+}
+
+.durationRow {
+    display: flex; align-items: center; gap: 6px;
+    img { width: 14px; opacity: 0.5; }
+    span { color: #666; font-size: 11px; }
+}
+
+.price {
+    font-size: 16px; font-weight: 600;
+    @media (max-width: 1024px) { &:nth-child(6) { display: none; } }
+}
+
+.bookBtn {
+    justify-self: end;
+    padding: 10px 24px;
+    border: 1px solid $color-red;
+    background: transparent;
+    color: $color-red;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 4px;
+
+    &:hover { background: $color-red; color: white; }
+    
+    &:disabled {
+        border-color: #ccc; color: #ccc; cursor: not-allowed;
+        &:hover { background: transparent; }
+    }
+
+    @media (max-width: 768px) {
+        width: 100%; justify-self: stretch; margin-top: 10px;
+    }
+}
+
+// --- Маршрут вгорі таблиці (Route Bar) ---
+.routeBar {
+    display: flex; align-items: center; padding: 24px;
+    border-bottom: 1px solid #eee; position: relative; min-height: 80px; 
+}
+
+.routeInfo {
+    display: flex; align-items: center; gap: 32px; width: 100%;
+    @media (max-width: 768px) { flex-direction: column; gap: 15px; align-items: flex-start; }
+}
+
+.cityBlock {
+    display: flex; flex-direction: column; line-height: 1.1;
+    .city { font-size: 20px; font-weight: 600; }
+    .code { font-size: 12px; opacity: .6; }
+}
+
+.arrow {
+    font-size: 24px; color: #ccc;
+    @media (max-width: 768px) { display: none; }
+}
+
+.dateBlock {
+    display: flex; flex-direction: column; margin-left: auto; 
+    @media (max-width: 768px) { margin-left: 0; margin-top: 10px; border-top: 1px solid #eee; padding-top: 10px; width: 100%; }
+    .date { font-size: 18px; font-weight: 500; }
+    .time { font-size: 13px; opacity: .6; }
+}

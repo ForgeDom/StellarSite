@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-dark: #0f0f0f;
+  --color-white: #ffffff;
+  --color-red-dark: #a00303;
+}
+
+/* ========================================= */
+/* === HEADER WRAPPER === */
+/* ========================================= */
+.header {
+  width: 100%;
+  position: fixed;        
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  background: rgba(15, 15, 15, 1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.45s ease, backdrop-filter 0.45s ease;
+}
+
+.headerTransparent {
+  background: rgba(15, 15, 15, 0);
+  backdrop-filter: blur(0.5px); 
+  border: none;
+}
+
+/* === CONTAINER === */
+.container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  height: 95px;
+  padding: 0 104px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between; // Розподіляє Ліву частину і Праву частину по краях
+  
+  position: relative;
+  z-index: 2001; // Щоб бути вище мобільного меню
+
+  @media (max-width: 1280px) { padding: 0 60px; }
+  @media (max-width: 768px) { padding: 0 24px; height: 70px; }
+}
+
+/* ========================================= */
+/* === LEFT SIDE (LOGO + NAV) === */
+/* ========================================= */
+.leftSide {
+  display: flex;
+  align-items: center;
+  gap: 100px; // Ваші 100px відступу між лого і посиланнями
+
+  @media (max-width: 1280px) { gap: 40px; }
+}
+
+/* Логотип */
+.navMainLink {
+  text-decoration: none;
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-white);
+    margin: 0;
+  }
+}
+
+/* Навігація (Desktop) */
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: 40px; // Відступ між посиланнями
+
+  // Ховаємо на планшетах і телефонах
+  @media (max-width: 1024px) {
+    display: none;
+  }
+}
+
+/* ========================================= */
+/* === RIGHT SIDE (AUTH & PROFILE) === */
+/* ========================================= */
+.desktopAuth {
+  display: flex;
+  align-items: center;
+  gap: 42px;
+
+  @media (max-width: 1280px) { gap: 20px; }
+
+  // Ховаємо на планшетах і телефонах
+  @media (max-width: 1024px) {
+    display: none;
+  }
+}
+
+/* === ЗАГАЛЬНІ СТИЛІ ПОСИЛАНЬ === */
+.navLink, .loginBtn, .signupBtn {
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+  transition: 0.25s ease;
+  transform: scale(1);
+
+  span {
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: 0.25s ease;
+  }
+
+  &:hover {
+    color: var(--color-red-dark);
+    transform: scale(1.07);
+    span { border-bottom: 1px solid var(--color-red-dark); }
+  }
+}
+
+/* ========================================= */
+/* === PROFILE DROPDOWN === */
+/* ========================================= */
+.userProfileWrapper {
+    position: relative; // Щоб dropdown позиціонувався відносно цього блоку
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: background 0.2s;
+
+    &:hover {
+        background: rgba(255,255,255,0.1);
+    }
+}
+
+.userAvatar { 
+    width: 35px; height: 35px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid rgba(255,255,255,0.8); 
+}
+
+.userName { 
+    color: white; 
+    font-weight: 600; 
+    font-size: 0.95rem; 
+    font-family: 'Inter', sans-serif; 
+}
+
+.arrowIcon {
+    margin-left: 2px;
+    transition: transform 0.3s ease;
+    path { stroke: white; }
+    
+    &.rotated {
+        transform: rotate(180deg);
+    }
+}
+
+/* --- САМ DROPDOWN --- */
+.dropdownMenu {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 200px;
+    background: #1a1a1a; // Темний фон
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 10px 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 2005;
+    animation: fadeInDropdown 0.2s ease-out;
+
+    &::before {
+        // Трикутник зверху
+        content: '';
+        position: absolute;
+        top: -6px; right: 20px;
+        width: 12px; height: 12px;
+        background: #1a1a1a;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        border-left: 1px solid rgba(255,255,255,0.1);
+        transform: rotate(45deg);
+    }
+}
+
+@keyframes fadeInDropdown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdownItem {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: left;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+        background: rgba(255,255,255,0.05);
+        color: white;
+    }
+}
+
+.logoutItem {
+    color: #e30613; // Червоний для виходу
+    &:hover { background: rgba(227, 6, 19, 0.1); }
+}
+
+.divider {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin: 5px 0;
+}
+
+/* ========================================= */
+/* === BURGER MENU (MOBILE ONLY) === */
+/* ========================================= */
+.burgerBtn {
+  display: none; // Приховано на десктопі
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 2002;
+
+  span {
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-white);
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  // Анімація хрестика
+  &.active {
+    span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    span:nth-child(2) { opacity: 0; }
+    span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+  }
+
+  // Показуємо тільки якщо екран менше 1024px
+  @media (max-width: 1024px) {
+    display: flex;
+  }
+}
+
+/* ========================================= */
+/* === MOBILE MENU OVERLAY === */
+/* ========================================= */
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: -100%; // Сховано за екраном
+  width: 100%;
+  height: 100vh;
+  background-color: #0f0f0f; // Темний фон
+  z-index: 2000;
+  transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px 40px;
+
+  &.open {
+    right: 0; // Виїжджає
+  }
+}
+
+.mobileContent {
+  display: flex; flex-direction: column; align-items: center; gap: 30px;
+}
+
+.mobileLink {
+  font-size: 24px; font-weight: 600; color: var(--color-white); text-decoration: none; transition: color 0.3s;
+  &:hover { color: var(--color-red-dark); }
+}
+
+.mobileDivider {
+  width: 50px; height: 2px; background: rgba(255,255,255,0.1); margin: 10px 0;
+}
+
+.mobileAuthButtons {
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+  button { font-size: 18px; }
+}
+
+.mobileAuthBlock {
+    display: flex; flex-direction: column; align-items: center; gap: 20px;
+}
+
+.mobileUserInfo {
+    display: flex; align-items: center; gap: 15px;
+    img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+    span { font-size: 18px; font-weight: 600; color: white; }
+}
+
+/* Стилі для кнопки виходу на мобільному (були відсутні) */
+.mobileLogoutBtn {
+    padding: 12px 35px;
+    border: 1px solid rgba(255,255,255,0.4);
+    background: transparent;
+    color: white;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: white;
+    }
+}

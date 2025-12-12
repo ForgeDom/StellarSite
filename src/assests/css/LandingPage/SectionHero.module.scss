@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-white: #ffffff;
+  --color-red-dark: #a00303;
+}
+
+// --- АНІМАЦІЯ (Keyframes) ---
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;            /* Fallback */
+  height: 100dvh;           /* Для мобільних браузерів */
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  padding-top: 120px;
+  padding-left: 120px;
+
+  /* Адаптація контейнера */
+  @media (max-width: 1024px) {
+    padding-left: 60px;
+    padding-top: 100px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 100px 24px 0 24px; /* Менші відступи з боків */
+    align-items: center;        /* Центруємо вертикально */
+    justify-content: center;    /* Центруємо горизонтально */
+    text-align: center;         /* Центруємо текст */
+  }
+}
+
+/* Темний градієнт зверху */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0) 40%
+  );
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  margin-top: 5%;
+  z-index: 2;
+  max-width: 1200px;
+
+  // --- ДОДАНО АНІМАЦІЮ ---
+  opacity: 0; // Початковий стан - приховано
+  animation: slideUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; // Плавна анімація
+  animation-delay: 0.2s; // Невелика затримка після завантаження фону
+
+  /* На мобільному прибираємо відступ зверху, щоб було по центру */
+  @media (max-width: 768px) {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Малий текст */
+.smallText {
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--color-white);
+  margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    max-width: 90%;
+    margin-bottom: 15px;
+  }
+}
+
+/* Великий заголовок */
+.title {
+  font-size: 120px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-white);
+  margin: 0 0 50px 0;
+
+  /* Плавне зменшення шрифту */
+  @media (max-width: 1280px) { font-size: 90px; }
+  @media (max-width: 1024px) { font-size: 70px; }
+  @media (max-width: 768px) { 
+    font-size: 50px; 
+    margin-bottom: 30px; 
+  }
+  @media (max-width: 480px) { font-size: 40px; }
+}
+
+.playBtn {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-white);
+  font-size: 18px;
+  font-weight: 500;
+  transition: 0.25s ease;
+
+  &:hover {
+    transform: scale(1.03);
+    opacity: 0.85;
+  }
+
+  @media (max-width: 768px) {
+    margin: 0 auto; /* Центруємо кнопку */
+  }
+}
+
+/* Червоне коло */
+.playIcon {
+  width: 40px;
+  height: 40px;
+  background: var(--color-red-dark);
+  border-radius: 50%;
+  position: relative;
+}
+
+/* Біла play-стрілка */
+.playIcon::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-left: 12px solid white;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+}

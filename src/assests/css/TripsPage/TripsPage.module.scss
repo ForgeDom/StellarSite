@@ -1,0 +1,391 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+// --- Змінні (Variables) ---
+$font-main: 'Inter', sans-serif;
+$color-white: #ffffff;
+$color-red: #e30613;
+$padding-x: 8vw;
+
+// --- Анімації ---
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// --- Скидання ---
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// --- Page ---
+.page {
+  font-family: $font-main;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+}
+
+// --- Hero ---
+.hero {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: $color-white;
+  transition: background-image 0.6s ease-in-out;
+  animation: fadeIn 0.8s ease-in-out;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom, 
+      rgba(0,0,0,0.3) 0%, 
+      rgba(0,0,0,0) 20%, 
+      rgba(0,0,0,0) 60%, 
+      rgba(0,0,0,0.8) 100%
+    );
+    z-index: 1;
+  }
+}
+
+// --- Hero Content ---
+.heroContent {
+  position: relative;
+  z-index: 2;
+  padding: 0 $padding-x;
+  width: 100%;
+  margin-top: -60px;
+  animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+
+  h1 {
+    font-size: 7rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 2.5rem;
+    letter-spacing: -2px;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+}
+
+.infoRow {
+  display: flex;
+  align-items: flex-end;
+  gap: 60px;
+  margin-bottom: 2rem;
+}
+
+.locationBlock {
+  .subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 5px;
+    font-weight: 300;
+  }
+  .place {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+}
+
+.weather {
+  display: flex;
+  gap: 15px;
+  font-size: 1rem;
+  opacity: 0.9;
+  span:first-child { font-weight: 600; }
+}
+
+// --- Nav Buttons ---
+.navButtons {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.arrowBtn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.1);
+  color: $color-white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: $color-white;
+    color: #000;
+    border-color: $color-white;
+    transform: scale(1.05);
+  }
+}
+
+// --- Bottom Bar ---
+.bottomBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+  padding: 0 $padding-x 3rem $padding-x;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.statsContainer {
+  display: flex;
+  gap: 60px;
+  
+  .statItem {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    h4 {
+      font-size: 0.85rem;
+      text-transform: capitalize;
+      opacity: 0.7;
+      font-weight: 600;
+      color: $color-white;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1;
+    }
+
+    p {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      max-width: 220px;
+      line-height: 1.4;
+    }
+  }
+}
+
+// --- Buttons ---
+.actionButtons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  position: relative;
+  z-index: 20;
+}
+
+.watchVideoBtn {
+  background: none;
+  border: none;
+  color: $color-white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: $font-main;
+  position: relative;
+  z-index: 21;
+
+  .playIcon {
+    width: 40px;
+    height: 40px;
+    background: $color-red;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    padding-left: 3px; 
+    transition: transform 0.3s ease;
+  }
+
+  &:hover .playIcon { transform: scale(1.1); }
+}
+
+.bookBtn {
+  padding: 12px 35px;
+  background: $color-red;
+  border: none;
+  color: $color-white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: $font-main;
+  text-transform: uppercase;
+  border-radius: 4px;
+  position: relative;
+  z-index: 30; // Найвищий пріоритет
+  pointer-events: auto;
+
+  &:hover {
+    background: darken($color-red, 10%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(227, 6, 19, 0.4);
+  }
+}
+
+.moreInfoBtn {
+  padding: 12px 35px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.6);
+  color: $color-white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: $font-main;
+  position: relative;
+  z-index: 21;
+
+  &:hover {
+    background: $color-white;
+    color: #000;
+    border-color: $color-white;
+  }
+}
+
+// --- MEDIA QUERIES (Адаптація) ---
+
+// 1. Великі планшети / Малі ноутбуки (до 1280px)
+@media (max-width: 1280px) {
+  .heroContent h1 { font-size: 5rem; }
+  .statsContainer { gap: 40px; }
+}
+
+// 2. Планшети (до 1024px)
+@media (max-width: 1024px) {
+  .heroContent h1 { font-size: 4rem; margin-bottom: 1.5rem; }
+  
+  .bottomBar { 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 30px; 
+    padding-bottom: 2rem;
+  }
+  
+  .actionButtons { 
+    align-self: flex-start; 
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  // Кнопки стають компактнішими на планшеті
+  .bookBtn, .moreInfoBtn {
+      padding: 10px 25px;
+      font-size: 0.9rem;
+  }
+}
+
+// 3. Мобільні телефони (до 768px)
+@media (max-width: 768px) {
+  // Дозволяємо скрол на мобільному, бо контент може не влізти в 100vh
+  .page {
+      height: auto; 
+      min-height: 100vh;
+      overflow-y: auto;
+  }
+
+  .hero {
+      height: auto;
+      min-height: 100vh;
+      padding-top: 100px; // Відступ зверху для хедера
+      padding-bottom: 40px;
+      justify-content: flex-start; // Контент зверху
+  }
+
+  .heroContent { 
+    padding: 0 5vw; 
+    margin-top: 0;
+    margin-bottom: 40px;
+  }
+  
+  .heroContent h1 { 
+      font-size: 3rem; 
+      margin-bottom: 1rem;
+      line-height: 1.1;
+  }
+  
+  .infoRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+
+  // Статистика у два стовпці
+  .statsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 30px;
+    
+    .statItem h2 { font-size: 1.5rem; }
+    
+    // Опис на всю ширину
+    .statItem:first-child { 
+      grid-column: 1 / -1; 
+      margin-bottom: 10px;
+    }
+  }
+
+  // Нижній бар перестає бути абсолютним на мобільному
+  .bottomBar { 
+    position: relative; // Стає частиною потоку
+    padding: 0 5vw;
+    width: 100%;
+  }
+  
+  // Кнопки на всю ширину і одна під одною
+  .actionButtons {
+    flex-direction: column;
+    align-items: stretch; // Розтягуємо на всю ширину
+    width: 100%;
+    gap: 15px;
+    
+    .bookBtn, .moreInfoBtn, .watchVideoBtn {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+    }
+    
+    // Відео кнопка теж по центру
+    .watchVideoBtn {
+        justify-content: center; 
+        border: 1px solid rgba(255,255,255,0.2); // Додаємо рамку для видимості
+        padding: 10px;
+        border-radius: 4px;
+    }
+  }
+  
+  // Стрілки піднімаємо вище або ховаємо, якщо заважають
+  .navButtons {
+      margin-top: 20px;
+      justify-content: flex-end; // Справа
+  }
+}

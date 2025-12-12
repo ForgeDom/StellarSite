@@ -1,0 +1,346 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+// --- Variables ---
+$color-red: #d60000;
+$color-red-hover: #b70000;
+$color-text-main: #111;
+$color-text-gray: #666;
+$color-border: #ddd;
+$font-main: 'Inter', sans-serif;
+
+// --- Keyframes (Анімації) ---
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// --- Layout ---
+.loginWrapper {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  font-family: $font-main;
+  background: #fff;
+  overflow: hidden; // Щоб нічого не вилазило при анімації
+}
+
+/* ===== LEFT SIDE (IMAGE) ===== */
+.leftSide {
+  width: 55%;
+  background-size: cover;
+  background-position: center;
+  position: relative; // Для оверлею
+  padding: 80px 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  color: white;
+
+  // Анімація появи фону
+  animation: fadeIn 1s ease-in-out;
+
+  // Затемнення (Overlay), щоб текст читався краще
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0; // top:0, left:0, right:0, bottom:0
+    background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.2));
+    z-index: 1;
+  }
+}
+
+// Контент поверх затемнення
+.bigTitle, .smallText {
+  position: relative;
+  z-index: 2;
+  
+  // Початково невидимі для анімації
+  opacity: 0; 
+  animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.bigTitle {
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 1.05;
+  max-width: 750px;
+  animation-delay: 0.2s; // Затримка
+}
+
+.smallText {
+  max-width: 380px;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.5;
+  opacity: 0.9;
+  animation-delay: 0.4s; // Текст з'являється пізніше заголовка
+}
+
+/* ===== RIGHT SIDE (FORM) ===== */
+.rightSide {
+  width: 45%; // Трохи ширше, щоб заповнити залишок (100 - 55 = 45)
+  background: white;
+  position: relative;
+  padding: 40px 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; // Центруємо форму вертикально
+
+  // Анімація для всього правого блоку
+  opacity: 0;
+  animation: slideUp 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+/* Close Button */
+.closeBtn {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  &:hover {
+    transform: rotate(90deg) scale(1.1); // Крутиться при наведенні
+  }
+}
+
+/* Top Info (Sign up) */
+.topInfo {
+  position: absolute;
+  top: 40px;
+  left: 90px; // Вирівнюємо по контенту
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  span {
+    color: $color-text-gray;
+    font-size: 14px;
+  }
+}
+
+.signUpBtn {
+  background: transparent;
+  border: none;
+  color: $color-red;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $color-red-hover;
+    text-decoration: underline;
+  }
+}
+
+/* Main Form Content */
+.signInTitle {
+  font-size: 32px;
+  font-weight: 700;
+  color: $color-text-main;
+  margin-bottom: 30px;
+}
+
+/* Social Buttons */
+.socialButtons {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.socialBtn {
+  flex: 1; // Кнопки займають рівну ширину
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px;
+  background: white;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  color: $color-text-gray;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+
+  &:hover {
+    background: #f9f9f9;
+    border-color: #bbb;
+    transform: translateY(-2px); // Легкий підйом
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+}
+
+/* Divider (OR) */
+.divider {
+  position: relative;
+  text-align: center;
+  margin: 30px 0;
+
+  span {
+    font-size: 12px;
+    font-weight: 700;
+    color: #999;
+    background: white;
+    padding: 0 15px;
+    z-index: 2;
+    position: relative;
+    text-transform: uppercase;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: $color-border;
+    z-index: 1;
+  }
+}
+
+/* Form Styling */
+.formBox {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background: #fdfdfd;
+
+  &:focus {
+    border-color: $color-red;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(214, 0, 0, 0.1); // Червоне світіння
+  }
+  
+  &::placeholder {
+    color: #aaa;
+  }
+}
+
+.optionsRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: $color-text-gray;
+  margin-top: -5px;
+}
+
+.keepSigned {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+
+  input[type="checkbox"] {
+    accent-color: $color-red; // Червоний чекбокс
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+}
+
+.forgotBtn {
+  background: none;
+  border: none;
+  color: $color-text-gray;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $color-red;
+  }
+}
+
+/* Submit Button */
+.submitBtn {
+  width: 100%;
+  padding: 16px 0;
+  background: $color-red;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(214, 0, 0, 0.3); // Тінь
+
+  &:hover {
+    background: $color-red-hover;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(214, 0, 0, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Адаптивність (Tablet) */
+@media (max-width: 1024px) {
+  .leftSide {
+    display: none; // Приховуємо картинку на планшетах/телефонах
+  }
+  .rightSide {
+    width: 100%;
+    padding: 40px 5vw;
+  }
+  .topInfo {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin-bottom: 30px;
+    justify-content: center;
+  }
+  .closeBtn {
+    top: 20px;
+    right: 20px;
+  }
+}

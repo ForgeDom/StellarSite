@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+$font-main: 'Inter', sans-serif;
+$color-black: #111;
+$color-gray: #888;
+$color-light-gray: #f5f5f5;
+$color-red: #e30613;
+
+.pageContainer {
+  font-family: $font-main;
+  background-color: #fff;
+  min-height: 100vh;
+  padding-top: 100px; // Відступ для головного хедера
+  padding-bottom: 80px; // Відступ, щоб контент не перекривався нижнім баром
+}
+
+/* HEADER */
+.headerSection {
+  padding: 0 8vw;
+  margin-bottom: 60px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  // Адаптив: на мобільному стовпчик
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+.mainTitle {
+  font-size: 8rem; // Дуже великий заголовок як на макеті
+  font-weight: 700;
+  color: $color-black;
+  line-height: 1;
+  letter-spacing: -2px;
+
+  @media (max-width: 1024px) { font-size: 5rem; }
+  @media (max-width: 768px) { font-size: 3.5rem; }
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: $color-gray;
+  max-width: 200px;
+  line-height: 1.4;
+  margin-top: 10px;
+}
+
+/* GRID */
+.gridContainer {
+  display: grid;
+  // Автоматичне заповнення: мінімум 280px ширина картки
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 60px 30px; // Відступи: 60px по вертикалі, 30px по горизонталі
+  padding: 0 8vw;
+}
+
+/* CARD */
+.card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    
+    .imageWrapper img {
+        transform: scale(1.05);
+    }
+  }
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 300px; // Фіксована висота картинки
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rowTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $color-black;
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $color-black;
+}
+
+.rowBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; // Вирівнювання по верху
+}
+
+.locationInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.location {
+  font-size: 0.85rem;
+  color: $color-gray;
+}
+
+.favBtn {
+    border: none;
+    background: transparent;
+    padding: 0;
+    font-size: 0.8rem;
+    color: $color-gray;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &:hover {
+        color: $color-red;
+        path { stroke: $color-red; }
+    }
+}
+
+.priceLabel {
+    font-size: 0.8rem;
+    color: $color-gray;
+    text-align: right;
+}
+
+/* BOTTOM BAR (FIXED) */
+.bottomBar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: #f5f5f5; // Світло-сірий фон
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8vw;
+    z-index: 100;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #999;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+
+    span {
+        cursor: pointer;
+        transition: color 0.3s;
+        &:hover { color: $color-black; }
+    }
+}
+
+.filtersLeft, .filtersRight {
+    display: flex;
+    gap: 40px;
+    
+    @media (max-width: 768px) { gap: 15px; font-size: 0.8rem;}
+}
+
+.activeFilter {
+    color: $color-red !important;
+}
+
+.activeFilterRed {
+    color: $color-red !important;
+}

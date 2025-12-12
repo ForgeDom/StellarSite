@@ -1,0 +1,402 @@
+:root {
+    --discover-white: #ffffff;
+    --discover-dark: #111111;
+    --discover-gray: #777777;
+    --discover-red: #e30613;
+}
+
+.page {
+    width: 100%;
+    background: #f5f5f5;
+}
+
+/* ===== HERO ===== */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 140px;
+  
+  // Додатково: плавна поява фону при завантаженні
+  animation: fadeIn 1s ease-in-out; 
+}
+
+// Анімація для фону (fade in)
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.55));
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+  color: var(--discover-white);
+}
+
+.heroTitle {
+  font-size: 80px;
+  line-height: 0.95;
+  font-weight: 700;
+  margin-bottom: 32px;
+
+  // АНІМАЦІЯ ЗАГОЛОВКА (з'являється першим)
+  animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.heroText {
+  font-size: 16px;
+  max-width: 460px;
+  margin-bottom: 38px;
+
+  // АНІМАЦІЯ ТЕКСТУ (затримка 0.2с)
+  opacity: 0; // Початково прихований
+  animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+.heroPlayBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--discover-white);
+  font-size: 16px;
+  font-weight: 500;
+
+  // АНІМАЦІЯ КНОПКИ (затримка 0.4с)
+  opacity: 0; // Початково прихована
+  animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: 0.4s;
+}
+
+.heroPlayIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--discover-red);
+  position: relative;
+  transition: transform 0.3s ease; // Додав ефект при наведенні
+}
+
+// Ефект при наведенні на кнопку
+.heroPlayBtn:hover .heroPlayIcon {
+  transform: scale(1.1);
+}
+
+.heroPlayIcon::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  border-left: 12px solid #fff;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+}
+
+/* ===== HAND PICKED TOURS ===== */
+.handpicked {
+    margin: 0 auto;
+    background: #f5f5f5;
+    padding: 90px 160px 120px;
+    max-width: 90vw;
+}
+
+.handpickedTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 120px;
+    margin-bottom: 80px;
+}
+
+.handpickedTextBlock,
+.handpickedTextBlockRight {
+
+    h2,
+    h3 {
+        font-size: 36px;
+        line-height: 1.1;
+        margin-bottom: 24px;
+    }
+
+    p {
+        font-size: 14px;
+        color: var(--discover-gray);
+        max-width: 470px;
+    }
+}
+
+.handpickedBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 160px;
+}
+
+/* Card (верхні тури) */
+.tourCard {
+    width: 290px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.tourImageWrapper img {
+    width: 100%;
+    display: block;
+}
+
+.tourInfo {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 18px 10px;
+    font-size: 13px;
+
+    h3 {
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+}
+
+.tourLocation {
+    color: var(--discover-gray);
+}
+
+.tourPriceBlock {
+    text-align: right;
+}
+
+.tourPrice {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.tourSub {
+    display: block;
+    font-size: 11px;
+    color: var(--discover-gray);
+}
+
+.tourMeta {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 18px 12px;
+}
+
+.tourFav {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* ===== ICELAND HERO ===== */
+.icelandHero {
+    height: 420px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+
+    margin-bottom: 90px;
+}
+
+.icelandContent {
+    position: absolute;
+    left: 80px;
+    top: 80px;
+    color: #fff;
+}
+
+.icelandContent h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.icelandArrows {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.circleBtn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icelandSubtitle {
+    font-size: 16px;
+    max-width: 260px;
+    margin-bottom: 40px;
+}
+
+.icelandSmall {
+    position: absolute;
+    right: 80px;
+    bottom: 40px;
+    text-align: right;
+    font-size: 13px;
+}
+
+/* ===== PICKY SECTION ===== */
+.picky {
+    background: #f5f5f5;
+    padding: 90px 160px 120px;
+    max-width: 90vw;
+    margin: 0 auto;
+}
+
+.pickyTop,
+.pickyBottom {
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+    column-gap: 120px;
+}
+
+.pickyTop {
+    margin-bottom: 80px;
+}
+
+.pickyTextBlock h2,
+.pickyTextRight h3 {
+    font-size: 32px;
+    margin-bottom: 18px;
+}
+
+.pickyTextBlock p,
+.pickyTextRight p {
+    font-size: 14px;
+    color: var(--discover-gray);
+    max-width: 430px;
+}
+
+/* нижня права частина */
+.pickyTextRight {
+    button {
+        margin-top: 24px;
+    }
+}
+
+/* маленькі картки */
+.smallCard {
+    width: 240px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
+.smallCardImg img {
+    width: 100%;
+    display: block;
+}
+
+.smallCardInfo {
+    padding: 12px 16px 14px;
+
+    h3 {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+}
+
+.smallLocation {
+    font-size: 12px;
+    color: var(--discover-gray);
+}
+
+.smallPriceRow {
+    margin-top: 10px;
+}
+
+.smallPrice {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.learnMoreBtn {
+    border: none;
+    background: var(--discover-red);
+    color: #fff;
+    padding: 10px 28px;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 0;
+}
+
+/* ===== DESTINATIONS GRID ===== */
+.destinations {
+    background: #f8f8f8;
+    padding: 80px 120px 60px;
+}
+
+.destinationsGrid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: 40px;
+    margin-bottom: 80px;
+
+    h4 {
+        font-size: 13px;
+        margin-bottom: 18px;
+    }
+
+    p {
+        font-size: 12px;
+        color: var(--discover-gray);
+        margin-bottom: 8px;
+    }
+}
+
+.bottomLine {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.bottomLine h2 {
+    font-size: 26px;
+}
+
+.bottomNote {
+    font-size: 11px;
+    color: var(--discover-gray);
+}

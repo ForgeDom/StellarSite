@@ -1,0 +1,35 @@
+export const flightsData = [
+  {
+    id: 101,
+    airline: "Lufthansa",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Lufthansa_Logo_2018.svg/2560px-Lufthansa_Logo_2018.svg.png",
+    departureTime: "16:15",
+    arrivalTime: "22:15",
+    duration: "2h 45m",
+    stops: "0 Stops",
+    priceEconomy: 129,
+    priceBusiness: 436,
+  },
+  {
+    id: 102,
+    airline: "Air Asia",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/AirAsia_New_Logo.svg/1200px-AirAsia_New_Logo.svg.png",
+    departureTime: "08:35",
+    arrivalTime: "16:22",
+    duration: "7h 45m",
+    stops: "1 Stop",
+    priceEconomy: 162,
+    priceBusiness: 365,
+  },
+  {
+    id: 103,
+    airline: "Vietnam Airlines",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Vietnam_Airlines_Logo.svg/1200px-Vietnam_Airlines_Logo.svg.png",
+    departureTime: "23:15",
+    arrivalTime: "18:00",
+    duration: "18h 45m",
+    stops: "2 Stops",
+    priceEconomy: 158,
+    priceBusiness: 320,
+  }
+];
