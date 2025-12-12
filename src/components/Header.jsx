@@ -136,7 +136,7 @@ const Header = () => {
           {user ? (
             <div className={styles.mobileAuthBlock}>
               <div className={styles.mobileUserInfo}>
-                <img src={defaultAvatar} alt="User" />
+                <img src={avatarUrl} alt="User" />
                 <span>{displayName}</span>
               </div>
               <button onClick={handleLogout} className={styles.mobileLogoutBtn}>Logout</button>
