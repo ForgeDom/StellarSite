@@ -304,3 +304,26 @@ $font-main: 'Inter', sans-serif;
     justify-content: center;
   }
 }
+/* Стилі для повідомлення про успіх */
+.successBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%; /* На всю висоту лівої частини */
+  animation: fadeIn 0.5s ease;
+}
+
+.successText {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666; /* Або ваша змінна $color-text-gray */
+  margin-bottom: 30px;
+  max-width: 400px;
+
+  strong {
+    color: #111; /* Темний колір для пошти */
+    font-weight: 600;
+  }
+}
