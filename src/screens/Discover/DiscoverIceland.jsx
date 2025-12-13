@@ -8,6 +8,7 @@ export default function DiscoverIceland() {
       className={styles.icelandHero}
       style={{ backgroundImage: `url(${icelandImg})` }}
     >
+      {/* 1. Основний контент (Заголовок, стрілки, опис) */}
       <div className={styles.icelandContent}>
         <h2>Iceland</h2>
 
@@ -19,11 +20,12 @@ export default function DiscoverIceland() {
         <p className={styles.icelandSubtitle}>
           We curate the best places to<br />stay around the world
         </p>
+      </div>
 
-        <div className={styles.icelandSmall}>
-          <span>The North Lake</span>
-          <span>Iceland</span>
-        </div>
+      {/* 2. ✅ ВИНИСЛИ ЦЕЙ БЛОК НАЗОВНІ (тепер він прямий нащадок icelandHero) */}
+      <div className={styles.icelandSmall}>
+        <span>The North Lake</span>
+        <span>Iceland</span>
       </div>
     </section>
   );
