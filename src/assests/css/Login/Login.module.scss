@@ -25,6 +25,14 @@ $font-main: 'Inter', sans-serif;
   to { opacity: 1; }
 }
 
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
 // --- Layout ---
 .loginWrapper {
   display: flex;
@@ -32,7 +40,7 @@ $font-main: 'Inter', sans-serif;
   height: 100vh;
   font-family: $font-main;
   background: #fff;
-  overflow: hidden; // Щоб нічого не вилазило при анімації
+  overflow: hidden; 
 }
 
 /* ===== LEFT SIDE (IMAGE) ===== */
@@ -40,33 +48,27 @@ $font-main: 'Inter', sans-serif;
   width: 55%;
   background-size: cover;
   background-position: center;
-  position: relative; // Для оверлею
+  position: relative;
   padding: 80px 90px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 20px;
   color: white;
-
-  // Анімація появи фону
   animation: fadeIn 1s ease-in-out;
 
-  // Затемнення (Overlay), щоб текст читався краще
   &::before {
     content: '';
     position: absolute;
-    inset: 0; // top:0, left:0, right:0, bottom:0
+    inset: 0;
     background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.2));
     z-index: 1;
   }
 }
 
-// Контент поверх затемнення
 .bigTitle, .smallText {
   position: relative;
   z-index: 2;
-  
-  // Початково невидимі для анімації
   opacity: 0; 
   animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
@@ -76,7 +78,7 @@ $font-main: 'Inter', sans-serif;
   font-weight: 700;
   line-height: 1.05;
   max-width: 750px;
-  animation-delay: 0.2s; // Затримка
+  animation-delay: 0.2s;
 }
 
 .smallText {
@@ -85,20 +87,18 @@ $font-main: 'Inter', sans-serif;
   font-weight: 300;
   line-height: 1.5;
   opacity: 0.9;
-  animation-delay: 0.4s; // Текст з'являється пізніше заголовка
+  animation-delay: 0.4s;
 }
 
 /* ===== RIGHT SIDE (FORM) ===== */
 .rightSide {
-  width: 45%; // Трохи ширше, щоб заповнити залишок (100 - 55 = 45)
+  width: 45%;
   background: white;
   position: relative;
   padding: 40px 90px;
   display: flex;
   flex-direction: column;
-  justify-content: center; // Центруємо форму вертикально
-
-  // Анімація для всього правого блоку
+  justify-content: center;
   opacity: 0;
   animation: slideUp 0.8s ease-out forwards;
   animation-delay: 0.3s;
@@ -123,7 +123,7 @@ $font-main: 'Inter', sans-serif;
   }
 
   &:hover {
-    transform: rotate(90deg) scale(1.1); // Крутиться при наведенні
+    transform: rotate(90deg) scale(1.1);
   }
 }
 
@@ -131,7 +131,7 @@ $font-main: 'Inter', sans-serif;
 .topInfo {
   position: absolute;
   top: 40px;
-  left: 90px; // Вирівнюємо по контенту
+  left: 90px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -174,7 +174,7 @@ $font-main: 'Inter', sans-serif;
 }
 
 .socialBtn {
-  flex: 1; // Кнопки займають рівну ширину
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -197,7 +197,7 @@ $font-main: 'Inter', sans-serif;
   &:hover {
     background: #f9f9f9;
     border-color: #bbb;
-    transform: translateY(-2px); // Легкий підйом
+    transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   }
 }
@@ -238,6 +238,20 @@ $font-main: 'Inter', sans-serif;
   gap: 20px;
 }
 
+/* 🔥🔥🔥 ВАЖЛИВО: Стиль для помилки 🔥🔥🔥 */
+.errorBox {
+  background-color: #ffebee; /* Світлий червоний фон */
+  color: $color-red;         /* Текст вашим червоним кольором */
+  border: 1px solid rgba($color-red, 0.3);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  width: 100%;
+  animation: shake 0.3s ease-in-out;
+}
+
 .input {
   width: 100%;
   padding: 16px;
@@ -251,7 +265,7 @@ $font-main: 'Inter', sans-serif;
   &:focus {
     border-color: $color-red;
     background: white;
-    box-shadow: 0 0 0 4px rgba(214, 0, 0, 0.1); // Червоне світіння
+    box-shadow: 0 0 0 4px rgba(214, 0, 0, 0.1);
   }
   
   &::placeholder {
@@ -276,7 +290,7 @@ $font-main: 'Inter', sans-serif;
   user-select: none;
 
   input[type="checkbox"] {
-    accent-color: $color-red; // Червоний чекбокс
+    accent-color: $color-red;
     width: 16px;
     height: 16px;
     cursor: pointer;
@@ -310,7 +324,7 @@ $font-main: 'Inter', sans-serif;
   cursor: pointer;
   margin-top: 10px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(214, 0, 0, 0.3); // Тінь
+  box-shadow: 0 4px 15px rgba(214, 0, 0, 0.3);
 
   &:hover {
     background: $color-red-hover;
@@ -321,12 +335,20 @@ $font-main: 'Inter', sans-serif;
   &:active {
     transform: translateY(0);
   }
+  
+  /* Стиль для відключеної кнопки (loading) */
+  &:disabled {
+    background: $color-text-gray;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
 }
 
 /* Адаптивність (Tablet) */
 @media (max-width: 1024px) {
   .leftSide {
-    display: none; // Приховуємо картинку на планшетах/телефонах
+    display: none;
   }
   .rightSide {
     width: 100%;

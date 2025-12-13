@@ -110,7 +110,7 @@ const Header = () => {
           ) : (
             <>
               <button className={styles.loginBtn} onClick={() => navigate("/auth/login")}><span>Login</span></button>
-              <button className={styles.signupBtn} onClick={() => navigate("/auth/register")}><span>Register</span></button>
+              <button className={styles.signupBtn} onClick={() => navigate("/auth/signup")}><span>Register</span></button>
             </>
           )}
         </div>
@@ -144,7 +144,7 @@ const Header = () => {
           ) : (
             <div className={styles.mobileAuthButtons}>
               <button className={styles.loginBtn} onClick={() => navigate("/auth/login")}>Login</button>
-              <button className={styles.signupBtn} onClick={() => navigate("/auth/register")}>Register</button>
+              <button className={styles.signupBtn} onClick={() => navigate("/auth/signup")}>Register</button>
             </div>
           )}
         </div>

@@ -59,7 +59,9 @@ export default function FlightsPage() {
                             onClick={() => setIsBookingsOpen(true)}
                             title="View my bookings"
                         >
-                            <span className={styles.btnIcon}>✈️</span>
+                            <span className={styles.btnIcon}>
+                                <img src={planeIMG} alt="Plane Icon" />
+                            </span>
                             <span className={styles.btnCount}>{bookings.length}</span>
                         </button>
                     )}
